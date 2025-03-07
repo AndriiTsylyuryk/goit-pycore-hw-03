@@ -43,3 +43,49 @@ def normalize_phone(phone_number):
         cleaned_number = '+38' + cleaned_number
     return cleaned_number
 
+#/////////////////////////////////////////////////////////////
+
+def get_upcoming_birthdays(users):
+    dates_list = []
+
+    today = datetime.today().date()
+
+    print(today)
+
+    for user in users:
+       formatted_birthday=datetime.strptime(user["birthday"], "%Y.%m.%d").date()
+       birthday_this_year = formatted_birthday.replace(year=today.year)
+       weekday = birthday_this_year.weekday()
+       seven_days = birthday_this_year - today
+       print(seven_days)
+    #    if birthday_this_year < today:
+    #        pass
+    #    if seven_days <= 7:
+           
+        
+    #    if weekday != 5 and weekday != 6:
+    #        dates_list.append({user['name']})
+          
+
+
+    return dates_list
+           
+     
+
+
+
+
+
+
+users = [
+    {"name": "John Doe", "birthday": "1985.03.08"},
+    {"name": "Jane Smith", "birthday": "1990.03.12"}
+]
+
+upcoming_birthdays = get_upcoming_birthdays(users)
+print("Список привітань на цьому тижні:", upcoming_birthdays)
+
+# [
+#     {'name': 'John Doe', 'congratulation_date': '2024.01.23'}, 
+#     {'name': 'Jane Smith', 'congratulation_date': '2024.01.29'}
+# ]
